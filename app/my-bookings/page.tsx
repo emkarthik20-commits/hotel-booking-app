@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/lib/auth-context"
 import { db } from "@/lib/firebase"
-import { collection, query, where, getDocs, orderBy, deleteDoc, doc } from "firebase/firestore"
+import { collection, query, where, getDocs, deleteDoc, doc } from "firebase/firestore"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -42,8 +42,10 @@ interface TableReservation {
   id: string
   tableName: string
   tableLocation: string
+  tableSeats: number
   date: string
   time: string
+  duration: string
   guests: number
   status: string
   specialRequests: string
@@ -67,19 +69,21 @@ export default function MyBookingsPage() {
       try {
         const roomQuery = query(
           collection(db, "roomBookings"),
-          where("userId", "==", user.uid),
-          orderBy("createdAt", "desc")
+          where("userId", "==", user.uid)
         )
         const roomSnap = await getDocs(roomQuery)
-        setRoomBookings(roomSnap.docs.map((d) => ({ id: d.id, ...d.data() } as RoomBooking)))
+        const roomData = roomSnap.docs.map((d) => ({ id: d.id, ...d.data() } as RoomBooking & { createdAt?: { seconds: number } }))
+        roomData.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0))
+        setRoomBookings(roomData)
 
         const tableQuery = query(
           collection(db, "tableReservations"),
-          where("userId", "==", user.uid),
-          orderBy("createdAt", "desc")
+          where("userId", "==", user.uid)
         )
         const tableSnap = await getDocs(tableQuery)
-        setTableReservations(tableSnap.docs.map((d) => ({ id: d.id, ...d.data() } as TableReservation)))
+        const tableData = tableSnap.docs.map((d) => ({ id: d.id, ...d.data() } as TableReservation & { createdAt?: { seconds: number } }))
+        tableData.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0))
+        setTableReservations(tableData)
       } catch {
         toast.error("Failed to load bookings")
       } finally {
@@ -275,7 +279,7 @@ export default function MyBookingsPage() {
                         </div>
                       </CardHeader>
                       <CardContent>
-                        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
                           <div className="flex items-center gap-2 text-sm text-muted-foreground">
                             <CalendarDays className="h-4 w-4 shrink-0" />
                             <div>
@@ -291,6 +295,13 @@ export default function MyBookingsPage() {
                             </div>
                           </div>
                           <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <Clock className="h-4 w-4 shrink-0" />
+                            <div>
+                              <p className="text-xs">Duration</p>
+                              <p className="font-medium text-foreground">{reservation.duration || "1 hour"}</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
                             <Users className="h-4 w-4 shrink-0" />
                             <div>
                               <p className="text-xs">Guests</p>
@@ -300,7 +311,7 @@ export default function MyBookingsPage() {
                           <div className="flex items-center gap-2 text-sm text-muted-foreground">
                             <MapPin className="h-4 w-4 shrink-0" />
                             <div>
-                              <p className="text-xs">Area</p>
+                              <p className="text-xs">Area ({reservation.tableSeats || "-"} seats)</p>
                               <p className="font-medium text-foreground">{reservation.tableLocation}</p>
                             </div>
                           </div>

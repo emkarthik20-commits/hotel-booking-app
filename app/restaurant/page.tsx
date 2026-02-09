@@ -4,8 +4,19 @@ import Image from "next/image"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { RestaurantReservationForm } from "@/components/restaurant-reservation-form"
+import { restaurantTables } from "@/lib/seed-data"
+import { Users, MapPin } from "lucide-react"
 
 export default function RestaurantPage() {
+  const tablesByLocation = restaurantTables.reduce(
+    (acc, table) => {
+      if (!acc[table.location]) acc[table.location] = []
+      acc[table.location].push(table)
+      return acc
+    },
+    {} as Record<string, typeof restaurantTables>
+  )
+
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
@@ -45,7 +56,7 @@ export default function RestaurantPage() {
                   every plate tells a story.
                 </p>
 
-                <div className="mt-8 flex flex-col gap-6">
+                <div className="mt-8 flex flex-col gap-4">
                   <div className="rounded-lg border border-border bg-card p-5">
                     <h3 className="font-serif text-lg font-semibold text-card-foreground">Lunch Service</h3>
                     <p className="mt-1 text-sm text-muted-foreground">12:00 PM - 2:30 PM, Daily</p>
@@ -54,11 +65,40 @@ export default function RestaurantPage() {
                     <h3 className="font-serif text-lg font-semibold text-card-foreground">Dinner Service</h3>
                     <p className="mt-1 text-sm text-muted-foreground">6:00 PM - 10:00 PM, Daily</p>
                   </div>
-                  <div className="rounded-lg border border-border bg-card p-5">
-                    <h3 className="font-serif text-lg font-semibold text-card-foreground">Table Locations</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      Choose from Window seats, Indoor dining, Private rooms, or our beautiful Terrace.
-                    </p>
+                </div>
+
+                {/* Available Tables */}
+                <div className="mt-8">
+                  <h3 className="font-serif text-xl font-bold text-foreground">Available Tables</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {restaurantTables.length} tables across {Object.keys(tablesByLocation).length} seating areas
+                  </p>
+                  <div className="mt-4 grid grid-cols-2 gap-3">
+                    {Object.entries(tablesByLocation).map(([loc, tables]) => (
+                      <div
+                        key={loc}
+                        className="flex flex-col gap-2 rounded-lg border border-border bg-card p-4"
+                      >
+                        <div className="flex items-center gap-2">
+                          <MapPin className="h-4 w-4 text-primary" />
+                          <span className="font-semibold text-card-foreground">{loc}</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground">
+                          {tables.length} {tables.length === 1 ? "table" : "tables"}
+                        </p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {tables.map((table) => (
+                            <span
+                              key={table.id}
+                              className="inline-flex items-center gap-1 rounded-md bg-secondary px-2 py-0.5 text-xs text-secondary-foreground"
+                            >
+                              <Users className="h-3 w-3" />
+                              {table.seats} seats
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

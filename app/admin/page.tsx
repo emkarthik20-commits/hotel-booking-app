@@ -53,7 +53,6 @@ import {
   LayoutDashboard,
   Users,
   CalendarCheck,
-  DollarSign,
   IndianRupee,
 } from "lucide-react"
 import { toast } from "sonner"
@@ -78,8 +77,10 @@ interface TableReservation {
   userEmail: string
   tableName: string
   tableLocation: string
+  tableSeats: number
   date: string
   time: string
+  duration: string
   guests: number
   status: string
   specialRequests: string
@@ -387,8 +388,10 @@ export default function AdminPage() {
                             <TableHead>Guest</TableHead>
                             <TableHead>Table</TableHead>
                             <TableHead>Location</TableHead>
+                            <TableHead>Seats</TableHead>
                             <TableHead>Date</TableHead>
                             <TableHead>Time</TableHead>
+                            <TableHead>Duration</TableHead>
                             <TableHead>Guests</TableHead>
                             <TableHead>Status</TableHead>
                             <TableHead>Actions</TableHead>
@@ -407,8 +410,10 @@ export default function AdminPage() {
                               <TableCell>
                                 <Badge variant="secondary">{reservation.tableLocation}</Badge>
                               </TableCell>
+                              <TableCell>{reservation.tableSeats || "-"}</TableCell>
                               <TableCell>{reservation.date}</TableCell>
                               <TableCell>{reservation.time}</TableCell>
+                              <TableCell>{reservation.duration || "-"}</TableCell>
                               <TableCell>{reservation.guests}</TableCell>
                               <TableCell>{statusBadge(reservation.status)}</TableCell>
                               <TableCell>

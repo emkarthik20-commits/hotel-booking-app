@@ -24,6 +24,7 @@ export function RestaurantReservationForm() {
   const [time, setTime] = useState("")
   const [guests, setGuests] = useState("")
   const [location, setLocation] = useState("")
+  const [duration, setDuration] = useState("")
   const [specialRequests, setSpecialRequests] = useState("")
   const [loading, setLoading] = useState(false)
 
@@ -44,7 +45,7 @@ export function RestaurantReservationForm() {
       router.push("/login")
       return
     }
-    if (!date || !time || !guests) {
+    if (!date || !time || !guests || !duration) {
       toast.error("Please fill in all required fields")
       return
     }
@@ -67,6 +68,7 @@ export function RestaurantReservationForm() {
         tableSeats: selectedTable.seats,
         date,
         time,
+        duration,
         guests: Number.parseInt(guests),
         specialRequests,
         status: "confirmed",
@@ -171,6 +173,53 @@ export function RestaurantReservationForm() {
                 </SelectContent>
               </Select>
             </div>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="duration">Approximate Duration</Label>
+            <Select value={duration} onValueChange={setDuration} required>
+              <SelectTrigger id="duration">
+                <SelectValue placeholder="Select duration" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="30 mins">
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-3.5 w-3.5" />
+                    30 minutes
+                  </div>
+                </SelectItem>
+                <SelectItem value="1 hour">
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-3.5 w-3.5" />
+                    1 hour
+                  </div>
+                </SelectItem>
+                <SelectItem value="1.5 hours">
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-3.5 w-3.5" />
+                    1.5 hours
+                  </div>
+                </SelectItem>
+                <SelectItem value="2 hours">
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-3.5 w-3.5" />
+                    2 hours
+                  </div>
+                </SelectItem>
+                <SelectItem value="2.5 hours">
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-3.5 w-3.5" />
+                    2.5 hours
+                  </div>
+                </SelectItem>
+                <SelectItem value="3 hours">
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-3.5 w-3.5" />
+                    3 hours
+                  </div>
+                </SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="flex flex-col gap-2">
