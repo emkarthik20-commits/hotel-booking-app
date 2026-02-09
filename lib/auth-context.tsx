@@ -36,26 +36,50 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      setUser(user)
-      if (user) {
-        const userDoc = await getDoc(doc(db, "users", user.uid))
-        if (userDoc.exists()) {
-          setUserData(userDoc.data() as UserData)
+    try {
+      const unsubscribe = onAuthStateChanged(auth, async (user) => {
+        setUser(user)
+        if (user) {
+          try {
+            const userDoc = await getDoc(doc(db, "users", user.uid))
+            if (userDoc.exists()) {
+              setUserData(userDoc.data() as UserData)
+            }
+          } catch (err) {
+            console.error("Error fetching user data:", err)
+          }
+        } else {
+          setUserData(null)
         }
-      } else {
-        setUserData(null)
-      }
+        setLoading(false)
+      })
+      return () => unsubscribe()
+    } catch (err) {
+      console.error("Auth state listener error:", err)
       setLoading(false)
-    })
-    return () => unsubscribe()
+      return () => {}
+    }
   }, [])
 
   const signIn = async (email: string, password: string) => {
     const result = await signInWithEmailAndPassword(auth, email, password)
-    const userDoc = await getDoc(doc(db, "users", result.user.uid))
-    if (userDoc.exists()) {
-      setUserData(userDoc.data() as UserData)
+    try {
+      const userDoc = await getDoc(doc(db, "users", result.user.uid))
+      if (userDoc.exists()) {
+        setUserData(userDoc.data() as UserData)
+      } else {
+        // User exists in Auth but not in Firestore - create the doc
+        const newUserData: UserData = {
+          uid: result.user.uid,
+          email: result.user.email,
+          displayName: result.user.displayName,
+          role: "user",
+        }
+        await setDoc(doc(db, "users", result.user.uid), newUserData)
+        setUserData(newUserData)
+      }
+    } catch (err) {
+      console.error("Error fetching user doc on sign in:", err)
     }
   }
 
