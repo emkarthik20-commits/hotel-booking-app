@@ -23,7 +23,7 @@ export const rooms = [
     description: "Luxurious suite with separate living area, panoramic views, and butler service.",
     price: 8000,
     capacity: 3,
-    image: "https://images.unsplash.com/photo-1590490360182-c33d955dca7d?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
     amenities: ["King Bed", "Living Area", "Panoramic View", "Butler Service", "Jacuzzi"],
   },
   {
