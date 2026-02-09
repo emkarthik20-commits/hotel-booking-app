@@ -1,0 +1,73 @@
+export const rooms = [
+  {
+    id: "deluxe-king",
+    name: "Deluxe King Room",
+    description: "Spacious room with king-size bed, city view, marble bathroom, and premium amenities.",
+    price: 250,
+    capacity: 2,
+    image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80",
+    amenities: ["King Bed", "City View", "Wi-Fi", "Mini Bar", "Room Service"],
+  },
+  {
+    id: "superior-twin",
+    name: "Superior Twin Room",
+    description: "Elegant twin room perfect for friends or colleagues traveling together.",
+    price: 200,
+    capacity: 2,
+    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80",
+    amenities: ["Twin Beds", "Garden View", "Wi-Fi", "Workspace", "Coffee Maker"],
+  },
+  {
+    id: "executive-suite",
+    name: "Executive Suite",
+    description: "Luxurious suite with separate living area, panoramic views, and butler service.",
+    price: 450,
+    capacity: 3,
+    image: "https://images.unsplash.com/photo-1590490360182-c33d955dca7d?w=800&q=80",
+    amenities: ["King Bed", "Living Area", "Panoramic View", "Butler Service", "Jacuzzi"],
+  },
+  {
+    id: "family-room",
+    name: "Family Room",
+    description: "Comfortable family room with extra space, connecting doors available.",
+    price: 320,
+    capacity: 4,
+    image: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800&q=80",
+    amenities: ["Queen Bed + Twin", "Park View", "Wi-Fi", "Mini Fridge", "Safe"],
+  },
+  {
+    id: "presidential-suite",
+    name: "Presidential Suite",
+    description: "The finest accommodation with grand living spaces, dining room, and exclusive perks.",
+    price: 800,
+    capacity: 4,
+    image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80",
+    amenities: ["Master Bedroom", "Dining Room", "Private Terrace", "Concierge", "Spa Access"],
+  },
+]
+
+export const restaurantTables = [
+  { id: "table-1", name: "Table 1", seats: 2, location: "Window" },
+  { id: "table-2", name: "Table 2", seats: 2, location: "Window" },
+  { id: "table-3", name: "Table 3", seats: 4, location: "Indoor" },
+  { id: "table-4", name: "Table 4", seats: 4, location: "Indoor" },
+  { id: "table-5", name: "Table 5", seats: 6, location: "Private" },
+  { id: "table-6", name: "Table 6", seats: 6, location: "Private" },
+  { id: "table-7", name: "Table 7", seats: 8, location: "Terrace" },
+  { id: "table-8", name: "Table 8", seats: 4, location: "Terrace" },
+]
+
+export const timeSlots = [
+  "12:00 PM",
+  "12:30 PM",
+  "1:00 PM",
+  "1:30 PM",
+  "2:00 PM",
+  "6:00 PM",
+  "6:30 PM",
+  "7:00 PM",
+  "7:30 PM",
+  "8:00 PM",
+  "8:30 PM",
+  "9:00 PM",
+]
