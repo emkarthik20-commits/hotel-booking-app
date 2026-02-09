@@ -16,9 +16,9 @@ const _inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "The Grand Haven Hotel & Restaurant",
+  title: "Hotel KMK - Hotel & Restaurant",
   description:
-    "Experience luxury accommodation and fine dining at The Grand Haven. Book your room or reserve a table today.",
+    "Experience luxury accommodation and fine dining at Hotel KMK. Book your room or reserve a table today.",
 }
 
 export default function RootLayout({

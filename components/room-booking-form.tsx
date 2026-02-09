@@ -160,14 +160,14 @@ export function RoomBookingForm({ room }: { room: Room }) {
           <div className="flex flex-col gap-2 rounded-lg bg-secondary p-4">
             <div className="flex items-center justify-between text-sm">
               <span className="text-muted-foreground">
-                ${room.price} x {nights} {nights === 1 ? "night" : "nights"}
+                {'\u20B9'}{room.price.toLocaleString("en-IN")} x {nights} {nights === 1 ? "night" : "nights"}
               </span>
-              <span className="text-foreground">${totalPrice}</span>
+              <span className="text-foreground">{'\u20B9'}{totalPrice.toLocaleString("en-IN")}</span>
             </div>
             <Separator />
             <div className="flex items-center justify-between font-semibold">
               <span className="text-foreground">Total</span>
-              <span className="font-serif text-xl text-primary">${totalPrice}</span>
+              <span className="font-serif text-xl text-primary">{'\u20B9'}{totalPrice.toLocaleString("en-IN")}</span>
             </div>
           </div>
 

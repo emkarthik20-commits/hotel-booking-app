@@ -45,7 +45,7 @@ export default function RoomDetailPage({ params }: { params: Promise<{ id: strin
                     </div>
                   </div>
                   <Badge className="bg-primary px-3 py-1.5 text-lg font-bold text-primary-foreground">
-                    ${room.price}
+                    {'\u20B9'}{room.price.toLocaleString("en-IN")}
                     <span className="text-xs font-normal">/night</span>
                   </Badge>
                 </div>

@@ -29,7 +29,7 @@ export function RoomCard({ room }: { room: Room }) {
         />
         <div className="absolute right-3 top-3">
           <Badge className="bg-primary text-primary-foreground">
-            ${room.price}/night
+            {'\u20B9'}{room.price.toLocaleString("en-IN")}/night
           </Badge>
         </div>
       </div>

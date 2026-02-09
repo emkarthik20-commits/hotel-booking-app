@@ -41,7 +41,7 @@ export default function LoginPage() {
         <CardHeader className="text-center">
           <Link href="/" className="mx-auto mb-4 flex items-center gap-2">
             <Hotel className="h-7 w-7 text-primary" />
-            <span className="font-serif text-xl font-bold text-foreground">The Grand Haven</span>
+            <span className="font-serif text-xl font-bold text-foreground">Hotel KMK</span>
           </Link>
           <CardTitle className="font-serif text-2xl text-card-foreground">Welcome Back</CardTitle>
           <CardDescription>Sign in to manage your bookings</CardDescription>

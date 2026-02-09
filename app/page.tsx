@@ -68,7 +68,7 @@ export default function HomePage() {
       <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden">
         <Image
           src="/images/hero-hotel.jpg"
-          alt="The Grand Haven Hotel exterior at twilight"
+          alt="Hotel KMK Hotel exterior at twilight"
           fill
           className="object-cover"
           priority
@@ -79,7 +79,7 @@ export default function HomePage() {
             Welcome to
           </p>
           <h1 className="font-serif text-5xl font-bold leading-tight text-background md:text-7xl">
-            <span className="text-balance">The Grand Haven</span>
+            <span className="text-balance">Hotel KMK</span>
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-background/80">
             Experience luxury accommodation and world-class dining in the heart of the city. Your perfect getaway awaits.
@@ -131,7 +131,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden py-20">
         <Image
           src="/images/restaurant.jpg"
-          alt="The Grand Haven fine dining restaurant"
+          alt="Hotel KMK fine dining restaurant"
           fill
           className="object-cover"
         />

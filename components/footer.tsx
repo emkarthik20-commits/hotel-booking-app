@@ -9,7 +9,7 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2">
               <Hotel className="h-6 w-6" />
-              <span className="font-serif text-lg font-bold">The Grand Haven</span>
+              <span className="font-serif text-lg font-bold">Hotel KMK</span>
             </div>
             <p className="mt-3 text-sm leading-relaxed opacity-70">
               Experience luxury accommodation and world-class dining in the heart of the city.
@@ -34,21 +34,21 @@ export function Footer() {
             <div className="mt-3 flex flex-col gap-2">
               <div className="flex items-center gap-2 text-sm opacity-70">
                 <MapPin className="h-4 w-4 shrink-0" />
-                123 Luxury Ave, Downtown City
+                Hotel KMK, Main Road, City Center
               </div>
               <div className="flex items-center gap-2 text-sm opacity-70">
                 <Phone className="h-4 w-4 shrink-0" />
-                +1 (555) 123-4567
+                +91 98765 43210
               </div>
               <div className="flex items-center gap-2 text-sm opacity-70">
                 <Mail className="h-4 w-4 shrink-0" />
-                info@grandhaven.com
+                info@hotelkmk.com
               </div>
             </div>
           </div>
         </div>
         <div className="mt-10 border-t border-background/20 pt-6 text-center text-sm opacity-50">
-          &copy; {new Date().getFullYear()} The Grand Haven Hotel & Restaurant. All rights reserved.
+          &copy; {new Date().getFullYear()} Hotel KMK Hotel & Restaurant. All rights reserved.
         </div>
       </div>
     </footer>

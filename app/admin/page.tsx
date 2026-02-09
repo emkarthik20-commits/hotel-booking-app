@@ -54,6 +54,7 @@ import {
   Users,
   CalendarCheck,
   DollarSign,
+  IndianRupee,
 } from "lucide-react"
 import { toast } from "sonner"
 
@@ -244,11 +245,11 @@ export default function AdminPage() {
             <Card className="border-border">
               <CardContent className="flex items-center gap-4 p-5">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                  <DollarSign className="h-6 w-6 text-primary" />
+                  <IndianRupee className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Total Revenue</p>
-                  <p className="font-serif text-2xl font-bold text-foreground">${totalRevenue.toLocaleString()}</p>
+                  <p className="font-serif text-2xl font-bold text-foreground">{'\u20B9'}{totalRevenue.toLocaleString("en-IN")}</p>
                 </div>
               </CardContent>
             </Card>
@@ -309,7 +310,7 @@ export default function AdminPage() {
                               <TableCell>{booking.checkOut}</TableCell>
                               <TableCell>{booking.guests}</TableCell>
                               <TableCell className="font-semibold text-primary">
-                                ${booking.totalPrice}
+                                {'\u20B9'}{booking.totalPrice?.toLocaleString("en-IN")}
                               </TableCell>
                               <TableCell>{statusBadge(booking.status)}</TableCell>
                               <TableCell>

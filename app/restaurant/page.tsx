@@ -14,7 +14,7 @@ export default function RestaurantPage() {
         <section className="relative flex h-64 items-center justify-center overflow-hidden md:h-80">
           <Image
             src="/images/restaurant.jpg"
-            alt="The Grand Haven Restaurant"
+            alt="Hotel KMK Restaurant"
             fill
             className="object-cover"
             priority

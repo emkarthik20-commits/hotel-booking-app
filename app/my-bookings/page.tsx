@@ -202,7 +202,7 @@ export default function MyBookingsPage() {
                           </div>
                           <div className="text-sm">
                             <p className="text-xs text-muted-foreground">Total</p>
-                            <p className="font-serif text-lg font-bold text-primary">${booking.totalPrice}</p>
+                            <p className="font-serif text-lg font-bold text-primary">{'\u20B9'}{booking.totalPrice?.toLocaleString("en-IN")}</p>
                           </div>
                         </div>
                         {booking.specialRequests && (

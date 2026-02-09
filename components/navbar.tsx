@@ -31,7 +31,7 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
           <Hotel className="h-7 w-7 text-primary" />
-          <span className="font-serif text-xl font-bold text-foreground">The Grand Haven</span>
+          <span className="font-serif text-xl font-bold text-foreground">Hotel KMK</span>
         </Link>
 
         {/* Desktop nav */}
