@@ -4,7 +4,9 @@ import Image from "next/image"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { RestaurantReservationForm } from "@/components/restaurant-reservation-form"
+import { RestaurantMenu } from "@/components/restaurant-menu"
 import { restaurantTables } from "@/lib/seed-data"
+import { Separator } from "@/components/ui/separator"
 import { Users, MapPin } from "lucide-react"
 
 export default function RestaurantPage() {
@@ -110,6 +112,10 @@ export default function RestaurantPage() {
             </div>
           </div>
         </section>
+
+        {/* Menu */}
+        <Separator className="mx-auto max-w-7xl" />
+        <RestaurantMenu />
       </main>
       <Footer />
     </div>
