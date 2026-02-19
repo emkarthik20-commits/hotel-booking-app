@@ -56,6 +56,7 @@ import {
   IndianRupee,
 } from "lucide-react"
 import { toast } from "sonner"
+import { AdminMenuManager } from "@/components/admin-menu-manager"
 
 interface RoomBooking {
   id: string
@@ -258,7 +259,7 @@ export default function AdminPage() {
 
           {/* Booking tables */}
           <Tabs defaultValue="rooms" className="mt-8">
-            <TabsList className="grid w-full max-w-md grid-cols-2">
+            <TabsList className="grid w-full max-w-2xl grid-cols-3">
               <TabsTrigger value="rooms" className="gap-2">
                 <Hotel className="h-4 w-4" />
                 Room Bookings
@@ -266,6 +267,10 @@ export default function AdminPage() {
               <TabsTrigger value="restaurant" className="gap-2">
                 <UtensilsCrossed className="h-4 w-4" />
                 Table Reservations
+              </TabsTrigger>
+              <TabsTrigger value="menu" className="gap-2">
+                <UtensilsCrossed className="h-4 w-4" />
+                Menu Management
               </TabsTrigger>
             </TabsList>
 
@@ -467,6 +472,10 @@ export default function AdminPage() {
                   )}
                 </CardContent>
               </Card>
+            </TabsContent>
+
+            <TabsContent value="menu" className="mt-6">
+              <AdminMenuManager />
             </TabsContent>
           </Tabs>
         </div>
