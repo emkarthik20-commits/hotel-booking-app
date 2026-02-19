@@ -1,6 +1,6 @@
-import { initializeApp, getApps, type FirebaseApp } from "firebase/app"
-import { getAuth, type Auth } from "firebase/auth"
-import { getFirestore, type Firestore } from "firebase/firestore"
+import { initializeApp, getApps } from "firebase/app"
+import { getAuth } from "firebase/auth"
+import { getFirestore } from "firebase/firestore"
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "AIzaSyASKYmwZT1_faued5ooXLA1J3e1SoAo1So",
@@ -11,21 +11,9 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "1:345199188986:web:982978652c1df0f30ee243",
 }
 
-let app: FirebaseApp
-let auth: Auth
-let db: Firestore
-
-try {
-  app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0]
-  auth = getAuth(app)
-  db = getFirestore(app)
-} catch (error) {
-  console.error("Firebase initialization error:", error)
-  // Create a fallback to prevent crashes when env vars are missing
-  app = getApps().length > 0 ? getApps()[0] : initializeApp(firebaseConfig)
-  auth = getAuth(app)
-  db = getFirestore(app)
-}
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0]
+const auth = getAuth(app)
+const db = getFirestore(app)
 
 export { auth, db }
 export default app
